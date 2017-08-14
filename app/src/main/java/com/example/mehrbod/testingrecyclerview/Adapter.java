@@ -62,21 +62,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     public class Task extends AsyncTask<MyViewHolder, String, String> {
 
+        
         @Override
-        protected Void doInBackground(MyViewHolder... params) {
+        protected String doInBackground(MyViewHolder... params) {
             final MyViewHolder holder = params[0];
             final Bitmap bitmap = ThumbnailUtils.createVideoThumbnail
                     (PATH, MediaStore.Images.Thumbnails.MINI_KIND);
 
 
             final Uri uri = Uri.parse(PATH);
-                    ;
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     long startTime = System.currentTimeMillis();
                     holder.imageView.start();
-            holder.imageView.setVideoURI(uri);
+                    holder.imageView.setVideoURI(uri);
                     Log.d("LoadTime", "" + (System.currentTimeMillis() - startTime));
 
                 }
